@@ -19,10 +19,12 @@
 </html>
 <script type="text/javascript">
 	$(document).ready(function() {
+		// Define point in coordinate
 		var startX = 0; var startY = 0; var endX = 0; var endY = 0;
 		$("#canvas").click(function(e) {
 			var x = e.pageX; var y = e.pageY;
 			$("#output").html("<div>" + x+" ,  " + y+ "</div>")
+			// Judge the first point whether is zero
 			if( (startX == 0) && (startY == 0)){
 				startX = x; startY = y;
 			} else {
@@ -31,10 +33,13 @@
 				var yCoordinate = (startY < endY) ? startY: endY;
 				var width = (startX < endX) ? (endX - startX) : (startX - endX);
 				var height = (startY < endY) ? (endY - startY) : (startY - endY)
+				// Alter the color that in selected region
 				var div = $("<div></div>").css("left", xCoordinate).css("top", yCoordinate)
 					.width(width).height(height)
 					.css("position", "fixed").css("background-color","#006").css("border","1px solid #999");
 					$("#canvas").append(div);
+
+				// Reset the selected point to 0;
 					startX = 0; startY = 0;
 			}
 		})
